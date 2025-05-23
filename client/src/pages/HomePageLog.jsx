@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function HomePage() {
+function HomePageLog() {
   return (
   <section className=" flex justify-center items-center">
     <header className="bg-zinc-800 p-10">
@@ -10,14 +10,14 @@ function HomePage() {
       </p>
 
       <Link
-        className="bg-zinc-500 text-white px-4 py-2 rounded-md mt-4 inline-block"
-        to="/register"
+        className="flex justify-center items-center bg-zinc-500 text-white px-4 py-2 rounded-md mt-4 inline-block"
+        to="/reserva"
       >
-        Registrarse
+        Hacer una reserva
       </Link>
     </header>
   </section>
   );
 }
 
-export default HomePage;
+export default HomePageLog;

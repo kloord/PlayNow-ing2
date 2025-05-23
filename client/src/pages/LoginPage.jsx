@@ -21,7 +21,7 @@ export function LoginPage() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/tasks");
+      navigate("/home");
     }
   }, [isAuthenticated]);
 
@@ -31,33 +31,36 @@ export function LoginPage() {
         {loginErrors.map((error, i) => (
           <Message message={error} key={i} />
         ))}
-        <h1 className="text-2xl font-bold">Login</h1>
+        <h1 className="text-2xl font-bold">Inicio de sesión</h1>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <Label htmlFor="email">Email:</Label>
           <Input
-            label="Write your email"
+            label="Escribe tu email"
             type="email"
             name="email"
-            placeholder="youremail@domain.tld"
+            placeholder="ejemplo@correo.com"
             {...register("email", { required: true })}
           />
           <p>{errors.email?.message}</p>
 
-          <Label htmlFor="password">Password:</Label>
+          <Label htmlFor="password">Contraseña:</Label>
           <Input
             type="password"
             name="password"
-            placeholder="Write your password"
+            placeholder="Escribe tu contraseña"
             {...register("password", { required: true, minLength: 6 })}
           />
           <p>{errors.password?.message}</p>
 
-          <Button>Login</Button>
+          <Button>Iniciar Sesión</Button>
         </form>
 
         <p className="flex gap-x-2 justify-between">
-          Don't have an account? <Link to="/register" className="text-sky-500">Sign up</Link>
+          ¿Aun no tienes cuenta? <Link to="/register" className="text-sky-500">Registrarse</Link>
+        </p>
+        <p className="flex gap-x-2 justify-between">
+          ¿Olvidaste tu contraseña? <Link to="/soporte" className="text-sky-500">Contactanos</Link>
         </p>
       </Card>
     </div>

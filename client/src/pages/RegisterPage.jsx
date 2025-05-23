@@ -7,7 +7,7 @@ import { registerSchema } from "../schemas/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 function Register() {
-  const { signup, errors: registerErrors, isAuthenticated } = useAuth();
+  const { signup, errors: registerErrors = [], isAuthenticated } = useAuth();
   const {
     register,
     handleSubmit,
@@ -22,7 +22,7 @@ function Register() {
   };
 
   useEffect(() => {
-    if (isAuthenticated) navigate("/tasks");
+    if (isAuthenticated) navigate("/home");
   }, [isAuthenticated]);
 
   return (
@@ -31,13 +31,13 @@ function Register() {
         {registerErrors.map((error, i) => (
           <Message message={error} key={i} />
         ))}
-        <h1 className="text-3xl font-bold">Register</h1>
+        <h1 className="text-3xl font-bold">Registrarse</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Label htmlFor="username">Username:</Label>
+          <Label htmlFor="username">Nombre:</Label>
           <Input
             type="text"
             name="username"
-            placeholder="Write your name"
+            placeholder="Escribe tu nombre"
             {...register("username")}
             autoFocus
           />
@@ -48,14 +48,26 @@ function Register() {
           <Label htmlFor="email">Email:</Label>
           <Input
             name="email"
-            placeholder="youremail@domain.tld"
+            placeholder="ejemplo@correo.com"
             {...register("email")}
           />
           {errors.email?.message && (
             <p className="text-red-500">{errors.email?.message}</p>
           )}
 
-          <Label htmlFor="password">Password:</Label>
+          <Label htmlFor="phone">Número de Teléfono:</Label>
+          <Input
+            type="text"
+            name="phone"
+            placeholder="123456789"
+            {...register("phone")}
+            maxLength={9}
+          />
+          {errors.phone?.message && (
+            <p className="text-red-500">{errors.phone?.message}</p>
+          )}
+
+          <Label htmlFor="password">Contraseña:</Label>
           <Input
             type="password"
             name="password"
@@ -66,7 +78,7 @@ function Register() {
             <p className="text-red-500">{errors.password?.message}</p>
           )}
 
-          <Label htmlFor="confirmPassword">Confirm Password:</Label>
+          <Label htmlFor="confirmPassword">Confirma tu contraseña:</Label>
           <Input
             type="password"
             name="confirmPassword"
@@ -76,10 +88,10 @@ function Register() {
           {errors.confirmPassword?.message && (
             <p className="text-red-500">{errors.confirmPassword?.message}</p>
           )}
-          <Button>Submit</Button>
+          <Button>Enviar</Button>
         </form>
         <p>
-          Already Have an Account?
+          ¿Ya tienes cuenta?
           <Link className="text-sky-500" to="/login">
             Login
           </Link>
