@@ -16,12 +16,13 @@ function App() {
             <Navbar />
             <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="/home" element={<HomePageLog />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/soporte" element={<h1>Soporte PlayNow</h1>} />
               <Route path="/register" element={<RegisterPage />} />
               <Route element={<ProtectedRoute />}>
                 <Route path="/profile" element={<h1>Profile</h1>} />
+                <Route path="/home" element={<HomePageLog />} />
+                <Route path="/reserva" element={<h1>Reserva de canchas</h1>} />
               </Route>
             </Routes>
           </main>
